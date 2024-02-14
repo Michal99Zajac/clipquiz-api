@@ -1,0 +1,17 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": ["./tsconfig.json", "./test/tsconfig.json"]
+  },
+  "extends": [
+    "plugin:prettier/recommended",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "plugins": ["simple-import-sort", "prettier", "@typescript-eslint"],
+  "rules": {
+    "simple-import-sort/imports": "warn",
+    "prettier/prettier": "warn"
+  }
+}
