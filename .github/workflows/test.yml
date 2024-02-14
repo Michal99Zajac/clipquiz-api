@@ -1,0 +1,25 @@
+name: Test CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  ci:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 21.x
+      - name: Install dependencies
+        run: npm i
+      - name: Linting
+        run: npm run lint
+      - name: Testing
+        run: npm test

@@ -26,6 +26,7 @@
     "dev": "npm run build && concurrently -k -p \"[{name}]\" -n \"TypeScript,App\" -c \"yellow.bold,cyan.bold\" \"npm:watch:ts\" \"npm:dev:start\"",
     "dev:start": "fastify start --ignore-watch=.ts$ -w -l info -P dist/src/app.js",
     "prepare": "node .husky/install.mjs",
+    "lint": "eslint . --ext .js,.ts",
     "format": "npm-run-all format:*",
     "format:lint": "eslint --fix './**/*.{ts,js}'",
     "format:prettier": "prettier --write './**/*.{ts,js}'",
