@@ -1,5 +1,5 @@
 test-env: [
   TS_NODE_FILES=true,
-  TS_NODE_PROJECT="./test/tsconfig.json"
+  TS_NODE_PROJECT="./tsconfig.test.json"
 ]
 timeout: 120
