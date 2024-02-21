@@ -1,14 +1,15 @@
-import {
+import type {
   FastifyBaseLogger,
   FastifyInstance,
   RawReplyDefaultExpression,
   RawRequestDefaultExpression,
   RawServerDefault,
 } from 'fastify'
-import { ZodTypeProvider } from 'fastify-type-provider-zod'
+import type { DataSource } from 'typeorm'
+import type { ZodTypeProvider } from 'fastify-type-provider-zod'
 
 declare global {
-  type FastifyZodInstance = FastifyInstance<
+  export type FastifyZodInstance = FastifyInstance<
     RawServerDefault,
     RawRequestDefaultExpression<RawServerDefault>,
     RawReplyDefaultExpression<RawServerDefault>,
@@ -17,4 +18,9 @@ declare global {
   >
 }
 
-export {}
+declare module 'fastify' {
+  export interface FastifyInstance {
+    someSupport(): string
+    db: DataSource
+  }
+}
