@@ -45,6 +45,9 @@
     "fastify-cli": "^6.1.1",
     "fastify-plugin": "^4.0.0",
     "fastify-type-provider-zod": "^1.1.9",
+    "pg": "^8.11.3",
+    "reflect-metadata": "^0.2.1",
+    "typeorm": "^0.3.20",
     "zod": "^3.22.4"
   },
   "devDependencies": {
