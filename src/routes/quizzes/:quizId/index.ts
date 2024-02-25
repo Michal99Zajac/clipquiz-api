@@ -1,5 +1,7 @@
 import z from 'zod'
 
+import { Quiz } from '@/models/Quiz'
+
 const quizRoute = async (fastify: FastifyZodInstance): Promise<void> => {
   fastify.get('/', {
     schema: {
@@ -13,6 +15,9 @@ const quizRoute = async (fastify: FastifyZodInstance): Promise<void> => {
       },
     },
     handler: async (req, reply) => {
+      const quiz = new Quiz()
+      quiz.title = 'test'
+
       reply.send({ hello: req.params.quizId })
     },
   })
