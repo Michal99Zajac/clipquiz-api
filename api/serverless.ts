@@ -1,3 +1,4 @@
+import awsLambdaFastify from '@fastify/aws-lambda'
 import * as dotenv from 'dotenv'
 
 import app from '@/app'
@@ -15,7 +16,4 @@ const fastify = Fastify({
 // Register your application a normal plugin.
 fastify.register(app)
 
-export default async (req: Request, res: Response) => {
-  await fastify.ready()
-  fastify.server.emit('request', req, res)
-}
+export const handler = awsLambdaFastify(fastify)
