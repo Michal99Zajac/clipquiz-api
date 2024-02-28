@@ -1,11 +1,6 @@
-import * as dotenv from 'dotenv'
+import Fastify from 'fastify'
 
 import app from './app'
-
-dotenv.config()
-
-// Require the framework
-import Fastify from 'fastify'
 
 // Instantiate Fastify with some config
 const server = Fastify({
