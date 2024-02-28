@@ -7,7 +7,7 @@
       "syntax": "typescript",
       "decorators": true,
       "tsx": false,
-      "dynamicImport": false
+      "dynamicImport": true
     },
     "transform": {
       "decoratorMetadata": true
@@ -19,7 +19,7 @@
     "baseUrl": "."
   },
   "module": {
-    "type": "es6",
+    "type": "commonjs",
     "strict": true,
     "strictMode": true,
     "noInterop": false
