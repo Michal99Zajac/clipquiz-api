@@ -21,9 +21,9 @@
   "scripts": {
     "test": "echo 'test success'",
     "start": "node dist/src/server.js | pino-pretty --colorize --colorizeObjects --singleLine",
-    "build": "swc src api package.json --copy-files --out-dir dist",
+    "build": "swc src lambda package.json --copy-files --out-dir dist",
     "dev": "npm run build && concurrently -k -p \"[{name}]\" -n \"SWC,APP\" -c \"yellow.bold,cyan.bold\" \"npm:dev:watch\" \"npm:dev:start\"",
-    "dev:watch": "swc --copy-files --watch --log-watch-compilation --out-dir dist src api package.json",
+    "dev:watch": "swc --copy-files --watch --log-watch-compilation --out-dir dist src package.json",
     "dev:start": "node --watch dist/src/server.js | pino-pretty --colorize --colorizeObjects --singleLine",
     "check": "npm-run-all check:*",
     "check:type": "tsc --noEmit",

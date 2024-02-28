@@ -22,6 +22,6 @@
       "@/*": ["src/*"]
     }
   },
-  "include": ["src/**/*.ts", "api/*.ts"],
+  "include": ["src/**/*.ts", "lambda/*.ts"],
   "exclude": ["node_modules"]
 }
