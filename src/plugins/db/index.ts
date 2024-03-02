@@ -21,7 +21,7 @@ export default fp(async (fastify) => {
       entities: [Quiz],
       synchronize: true,
       logging: false,
-      ssl: true,
+      ssl: env.DATABASE_SSL,
     })
 
     // Connect to the database

@@ -1,4 +1,9 @@
 {
+  "ts-node": {
+    "swc": true,
+    "transpileOnly": true,
+    "require": ["tsconfig-paths/register"]
+  },
   "compilerOptions": {
     "outDir": "dist",
     "target": "ES2022",
@@ -19,9 +24,10 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "@t/*": ["test/*"]
     }
   },
-  "include": ["src/**/*.ts", "lambda/*.ts"],
+  "include": ["src/**/*.ts", "lambda/*.ts", "test/**/*.ts"],
   "exclude": ["node_modules"]
 }

@@ -69,3 +69,6 @@ dist
 
 # env
 .env*
+
+# test
+.tap
