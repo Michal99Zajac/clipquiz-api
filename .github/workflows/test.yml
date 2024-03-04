@@ -44,6 +44,9 @@ jobs:
       - name: Check Project
         run: npm run check
 
+      - name: Create .env file
+        run: touch .env
+
       - name: Migrate Database
         run: npm run migration:migrate
 
