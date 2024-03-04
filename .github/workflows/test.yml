@@ -34,6 +34,7 @@ jobs:
       DATABASE_PASSWORD: postgres
       DATABASE_NAME: postgres
       DATABASE_SSL: false
+      CI: true
 
     steps:
       - uses: actions/checkout@v4
