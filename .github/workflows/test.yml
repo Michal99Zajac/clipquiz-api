@@ -44,7 +44,16 @@ jobs:
       - name: Check Project
         run: npm run check
 
+      - name: Migrate Database
+        run: npm run migration:migrate
+
       - name: Test
         run: npm test
         env:
           DATABASE_HOST: postgres
+          DATABASE_PORT: 5432
+          DATABASE_USERNAME: postgres
+          DATABASE_PASSWORD: postgres
+          DATABASE_NAME: postgres
+          DATABASE_SSL: false
+
