@@ -1,8 +1,6 @@
 import fp from 'fastify-plugin'
-import { DataSource } from 'typeorm'
 
-import { env } from '@/config/env'
-import { Quiz } from '@/models/Quiz'
+import db from '@/db'
 
 /**
  * This plugins adds some utilities to handle database ORM (TypeORM)
@@ -11,19 +9,6 @@ import { Quiz } from '@/models/Quiz'
  */
 export default fp(async (fastify) => {
   if (!fastify.db) {
-    const db = new DataSource({
-      type: 'postgres',
-      host: env.DATABASE_HOST,
-      port: env.DATABASE_PORT,
-      username: env.DATABASE_USERNAME,
-      password: env.DATABASE_PASSWORD,
-      database: env.DATABASE_NAME,
-      entities: [Quiz],
-      synchronize: true,
-      logging: false,
-      ssl: env.DATABASE_SSL,
-    })
-
     // Connect to the database
     await db.initialize()
 
