@@ -10,7 +10,7 @@ export const env = cleanEnv(process.env, {
   DATABASE_USERNAME: str(),
   DATABASE_PASSWORD: str(),
   DATABASE_NAME: str(),
-  DATABASE_SSL: bool({ default: false }),
+  DATABASE_SSL: bool(),
 })
 
 export default env
