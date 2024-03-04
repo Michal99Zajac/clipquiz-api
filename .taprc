@@ -7,7 +7,5 @@ test-env: [
   DATABASE_USERNAME=postgres,
   DATABASE_SSL=false
 ]
-show-full-coverage: true
 tsconfig: ./tsconfig.json
-typecheck: true
 timeout: 120
