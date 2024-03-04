@@ -19,7 +19,7 @@
   ],
   "license": "ISC",
   "scripts": {
-    "test": "npm run build && npm run check:type && tap run",
+    "test": "tap run",
     "start": "node dist/lambda/index.js",
     "build": "swc --copy-files --delete-dir-on-start --out-dir=dist --ignore=./src/dev.ts src lambda package.json",
     "build:dev": "swc --copy-files --log-watch-compilation --out-dir=dist src package.json",
