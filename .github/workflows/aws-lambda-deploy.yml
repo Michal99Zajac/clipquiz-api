@@ -17,17 +17,14 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install Dependencies
-        run: npm ci
+      - name: Install Production Dependencies
+        run: npm ci --production
 
       - name: Build
         run: npm run build
 
       - name: Copy package.json to dist
-        run: cp package.json dist/ && cp package-lock.json dist/ || true
-
-      - name: Install Production Dependencies
-        run: cd dist && npm install --production
+        run: mv package.json dist/ && mv package-lock.json dist/ || true
 
       - name: Zip
         run: (cd dist && zip -r ../function.zip .)
@@ -41,6 +38,22 @@ jobs:
           function_name: clipquiz-api
           zip_file: function.zip
           handler: lambda.handler
+
+  migration:
+    runs-on: ubuntu-22.04
+    environment: production
+    needs: deploy
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Dependencies
+        run: npm ci
 
       - name: Migrate Database
         run: npm run migration:migrate
