@@ -1,5 +1,3 @@
-import t from 'tap'
-
-t.test('example is loaded', async (t) => {
-  t.equal('this is an example', 'this is an example')
+test('example is loaded', async () => {
+  expect({ example: true }).toEqual({ example: true })
 })

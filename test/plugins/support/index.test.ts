@@ -1,5 +1,3 @@
-import t from 'tap'
-
-t.test('support works standalone', async (t) => {
-  t.equal('hugs', 'hugs')
+test('support works standalone', async () => {
+  expect({ root: true }).toEqual({ root: true })
 })

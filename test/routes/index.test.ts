@@ -1,5 +1,3 @@
-import t from 'tap'
-
-t.test('default root route', async (t) => {
-  t.matchOnlyStrict({ root: true }, { root: true })
+test('default root route', async () => {
+  expect({ root: true }).toEqual({ root: true })
 })

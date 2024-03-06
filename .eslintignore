@@ -3,3 +3,4 @@ dist
 coverage
 commitlint.config.js
 src/**/*.d.ts
+jest.config.js
