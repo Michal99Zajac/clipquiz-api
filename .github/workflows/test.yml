@@ -34,7 +34,6 @@ jobs:
       DATABASE_PASSWORD: postgres
       DATABASE_NAME: postgres
       DATABASE_SSL: false
-      CI: true
 
     steps:
       - uses: actions/checkout@v4
@@ -53,12 +52,8 @@ jobs:
       - name: Check Project
         run: npm run check
 
-      - name: Create .env file
-        run: touch .env
-
       - name: Migrate Database
         run: npm run migration:migrate
 
       - name: Test
         run: npm test
-
