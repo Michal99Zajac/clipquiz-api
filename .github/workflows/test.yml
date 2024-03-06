@@ -8,6 +8,15 @@ on:
     branches:
       - main
 
+env:
+  NODE_ENV: test
+  DATABASE_HOST: localhost
+  DATABASE_PORT: 5432
+  DATABASE_USERNAME: postgres
+  DATABASE_PASSWORD: postgres
+  DATABASE_NAME: postgres
+  DATABASE_SSL: false
+
 jobs:
   test:
     runs-on: ubuntu-22.04
@@ -16,9 +25,9 @@ jobs:
       postgres:
         image: postgres:15
         env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: postgres
+          POSTGRES_USER: ${{ env.DATABASE_USERNAME}}
+          POSTGRES_PASSWORD: ${{ env.DATABASE_PASSWORD}}
+          POSTGRES_DB: ${{ env.DATABASE_NAME}}
         ports:
           - 5432:5432
         options: >-
@@ -26,14 +35,6 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-
-    env:
-      DATABASE_HOST: localhost
-      DATABASE_PORT: 5432
-      DATABASE_USERNAME: postgres
-      DATABASE_PASSWORD: postgres
-      DATABASE_NAME: postgres
-      DATABASE_SSL: false
 
     steps:
       - uses: actions/checkout@v4
