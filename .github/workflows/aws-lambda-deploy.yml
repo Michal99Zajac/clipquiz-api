@@ -17,11 +17,14 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install Production Dependencies
-        run: npm ci --production
+      - name: Install Dependencies
+        run: npm ci
 
       - name: Build
         run: npm run build
+
+      - name: Install Production Dependencies
+        run: npm ci --production
 
       - name: Copy package.json to dist
         run: mv package.json dist/ && mv package-lock.json dist/ || true
