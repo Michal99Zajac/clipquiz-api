@@ -23,8 +23,11 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Copy package.json to dist
+        run: cp package.json dist/ && cp package-lock.json dist/ || true
+
       - name: Install Production Dependencies
-        run: npm config set prefix ./dist && npm install --production
+        run: cd dist && npm install --production
 
       - name: Zip
         run: (cd dist && zip -r ../function.zip .)
