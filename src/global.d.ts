@@ -5,7 +5,6 @@ import type {
   RawRequestDefaultExpression,
   RawServerDefault,
 } from 'fastify'
-import type { DataSource } from 'typeorm'
 import type { ZodTypeProvider } from 'fastify-type-provider-zod'
 
 declare global {
@@ -16,11 +15,4 @@ declare global {
     FastifyBaseLogger,
     ZodTypeProvider
   >
-}
-
-declare module 'fastify' {
-  export interface FastifyInstance {
-    someSupport(): string
-    db: DataSource
-  }
 }

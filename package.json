@@ -19,7 +19,7 @@
   ],
   "license": "ISC",
   "scripts": {
-    "test": "jest",
+    "test": "DOTENV_CONFIG_PATH=.env.test jest",
     "start": "node dist/lambda/index.js",
     "build": "swc --copy-files --delete-dir-on-start --out-dir=dist --ignore=./src/dev.ts src lambda package.json",
     "build:dev": "swc --copy-files --log-watch-compilation --out-dir=dist src package.json",

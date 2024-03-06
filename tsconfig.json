@@ -24,10 +24,9 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
-      "@t/*": ["test/*"]
+      "@/*": ["src/*"]
     }
   },
-  "include": ["src/**/*.ts", "lambda/*.ts", "test/**/*.ts"],
+  "include": ["src/**/*.ts", "lambda/*.ts"],
   "exclude": ["node_modules"]
 }
