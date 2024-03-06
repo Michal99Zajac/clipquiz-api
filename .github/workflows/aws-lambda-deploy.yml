@@ -1,8 +1,11 @@
-name: AWS Lambda Deploy
+name: Deploy Workflow
 
 on:
-  push:
-    branches: [ main ]
+  workflow_run:
+    workflows: ["Test Workflow"]
+    branches: [main]
+    types:
+      - completed
 
 jobs:
   deploy:
