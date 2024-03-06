@@ -41,6 +41,7 @@ jobs:
           function_name: clipquiz-api
           zip_file: function.zip
           handler: lambda.handler
+          environment: NODE_ENV=production,DATABASE_HOST=${{ vars.DATABASE_HOST }},DATABASE_NAME=${{ vars.DATABASE_NAME }},DATABASE_PASSWORD=${{ vars.DATABASE_PASSWORD }},DATABASE_PORT=${{ vars.DATABASE_PORT }},DATABASE_USERNAME=${{ vars.DATABASE_USERNAME }},DATABASE_SSL=${{ vars.DATABASE_SSL }}
 
   migration:
     runs-on: ubuntu-22.04
@@ -60,3 +61,10 @@ jobs:
 
       - name: Migrate Database
         run: npm run migration:migrate
+        env:
+          DATABASE_HOST: ${{ vars.DATABASE_HOST }}
+          DATABASE_NAME: ${{ vars.DATABASE_NAME }}
+          DATABASE_PASSWORD: ${{ vars.DATABASE_PASSWORD }}
+          DATABASE_PORT: ${{ vars.DATABASE_PORT }}
+          DATABASE_USERNAME: ${{ vars.DATABASE_USERNAME }}
+          DATABASE_SSL: ${{ vars.DATABASE_SSL }}
