@@ -1,8 +1,14 @@
 import { z } from 'zod'
 
 export const getQuizzesQuerystringSchema = z.object({
-  limit: z.number().optional(),
-  offset: z.number().optional(),
+  limit: z
+    .string()
+    .transform((limit) => Number(limit))
+    .optional(),
+  offset: z
+    .string()
+    .transform((offset) => Number(offset))
+    .optional(),
 })
 
 export const createQuizBodySchema = z.object({
