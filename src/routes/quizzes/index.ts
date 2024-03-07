@@ -1,49 +1,32 @@
 import { FastifyZodInstance } from 'fastify'
 import z from 'zod'
 
-import { Quiz } from '@/models/Quiz'
-import { QuizSchema } from '@/schemas/Quiz'
+import { QuizController } from '@/controllers/QuizController'
+import {
+  createQuizBodySchema,
+  getQuizzesQuerystringSchema,
+} from '@/controllers/QuizController/schemas'
+import { quizSchema } from '@/schemas/Quiz'
 
 const quizzesRoute = async (fastify: FastifyZodInstance) => {
   fastify.get('/', {
     schema: {
-      querystring: z.object({
-        limit: z.number().optional(),
-        offset: z.number().optional(),
-      }),
+      querystring: getQuizzesQuerystringSchema,
       response: {
-        200: z.array(QuizSchema),
+        200: z.array(quizSchema),
       },
     },
-    handler: async (req, reply) => {
-      const quizRepository = fastify.db.getRepository(Quiz)
-      const quizzes = await quizRepository.find({
-        take: req.query.limit,
-        skip: req.query.offset,
-      })
-
-      reply.send(quizzes)
-    },
+    handler: new QuizController(fastify).getQuizzes,
   })
 
   fastify.post('/', {
     schema: {
-      body: z.object({
-        title: z.string(),
-      }),
+      body: createQuizBodySchema,
       response: {
-        201: QuizSchema,
+        201: quizSchema,
       },
     },
-    handler: async (req, reply) => {
-      const quizRepository = fastify.db.getRepository(Quiz)
-      const quiz = new Quiz()
-      quiz.title = req.body.title
-
-      await quizRepository.save(quiz)
-
-      reply.code(201).send(quiz)
-    },
+    handler: new QuizController(fastify).createQuiz,
   })
 }
 
