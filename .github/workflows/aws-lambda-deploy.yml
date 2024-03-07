@@ -1,8 +1,8 @@
-name: Deploy Workflow
+name: deploy-workflow
 
 on:
   workflow_run:
-    workflows: ["Test Workflow"]
+    workflows: ["test-workflow"]
     branches: [main]
     types:
       - completed

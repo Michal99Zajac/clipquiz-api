@@ -1,12 +1,6 @@
-name: Test Workflow
+name: test-workflow
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+on: [push]
 
 env:
   NODE_ENV: test
@@ -20,7 +14,6 @@ env:
 jobs:
   test:
     runs-on: ubuntu-22.04
-
     services:
       postgres:
         image: postgres:15
@@ -35,7 +28,6 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-
     steps:
       - uses: actions/checkout@v4
 
@@ -50,11 +42,11 @@ jobs:
       - name: Check Build
         run: npm run build
 
-      - name: Check Project
+      - name: Check Types and Lint
         run: npm run check
 
       - name: Migrate Database
         run: npm run migration:migrate
 
-      - name: Test
+      - name: Run Tests
         run: npm test
