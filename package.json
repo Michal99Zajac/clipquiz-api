@@ -20,8 +20,8 @@
   "license": "ISC",
   "scripts": {
     "test": "NODE_ENV=test jest",
-    "start": "NODE_ENV=production node -r dotenv-flow/config dist/lambda/index.js | pino-pretty --colorize --colorizeObjects --singleLine",
-    "start:dev": "NODE_ENV=development node --watch -r dotenv-flow/config dist/src/index.js | pino-pretty --colorize --colorizeObjects --singleLine",
+    "start": "NODE_ENV=production node -r dotenv-flow/config dist/lambda/index.js",
+    "start:dev": "NODE_ENV=development node --watch -r dotenv-flow/config dist/src/index.js",
     "build": "swc --copy-files --log-watch-compilation --delete-dir-on-start --out-dir=dist src lambda package.json",
     "build:dev": "swc --watch --copy-files --log-watch-compilation --out-dir=dist src lambda package.json",
     "dev": "npm run build && concurrently -k -p \"[{name}]\" -n \"SWC,APP\" -c \"yellow.bold,cyan.bold\" \"npm:build:dev\" \"npm:start:dev\"",
