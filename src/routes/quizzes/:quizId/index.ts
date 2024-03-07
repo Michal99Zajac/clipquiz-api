@@ -1,3 +1,4 @@
+import { FastifyZodInstance } from 'fastify'
 import z from 'zod'
 
 import { Quiz } from '@/models/Quiz'
