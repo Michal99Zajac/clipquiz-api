@@ -64,6 +64,7 @@ export class QuizController {
       where: {
         id: Number(req.params.quizId),
       },
+      relations: ['questions', 'questions.answers'],
     })
 
     reply.send(quiz)

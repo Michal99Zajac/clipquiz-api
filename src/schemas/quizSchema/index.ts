@@ -6,4 +6,8 @@ import { z } from 'zod'
 export const quizSchema = z.object({
   id: z.number(),
   title: z.string(),
+  description: z.string(),
+  thumbnail: z.string(),
+  videoUrl: z.string(),
+  videoDuration: z.number(),
 })

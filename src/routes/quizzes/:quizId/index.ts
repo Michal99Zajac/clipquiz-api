@@ -4,6 +4,7 @@ import z from 'zod'
 import { QuizController } from '@/controllers/QuizController'
 import { quizParamsSchema, updateQuizBodySchema } from '@/controllers/QuizController/schemas'
 import { notFoundSchema } from '@/schemas/notFoundSchema'
+import { questionSchema } from '@/schemas/questionSchema'
 import { quizSchema } from '@/schemas/quizSchema'
 
 const quizRoute = async (fastify: FastifyZodInstance): Promise<void> => {
@@ -11,7 +12,11 @@ const quizRoute = async (fastify: FastifyZodInstance): Promise<void> => {
     schema: {
       params: quizParamsSchema,
       response: {
-        200: quizSchema.nullable(),
+        200: quizSchema
+          .extend({
+            questions: z.array(questionSchema),
+          })
+          .nullable(),
       },
     },
     handler: new QuizController(fastify).getQuiz,
