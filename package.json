@@ -26,7 +26,7 @@
     "build:dev": "swc --watch --copy-files --log-watch-compilation --out-dir=dist src lambda package.json",
     "dev": "npm run build && concurrently -k -p \"[{name}]\" -n \"SWC,APP\" -c \"yellow.bold,cyan.bold\" \"npm:build:dev\" \"npm:start:dev\"",
     "typeorm": "node -r dotenv/config -r ts-node/register ./node_modules/typeorm/cli.js",
-    "migration:make": "npm run typeorm migration:generate src/migrations/$npm_config_name -- -d src/db",
+    "migration:make": "DOTENV_CONFIG_PATH=.env.development npm run typeorm migration:generate src/migrations/$npm_config_name -- -d src/db",
     "migration:migrate": "npm run typeorm migration:run -- -d src/db",
     "migration:revert": "npm run typeorm migration:revert -- -d src/db",
     "migration:show": "npm run typeorm migration:show -- -d src/db",
