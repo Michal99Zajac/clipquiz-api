@@ -6,7 +6,7 @@ import {
   createQuizBodySchema,
   getQuizzesQuerystringSchema,
 } from '@/controllers/QuizController/schemas'
-import { quizSchema } from '@/schemas/Quiz'
+import { quizSchema } from '@/schemas/quizSchema'
 
 const quizzesRoute = async (fastify: FastifyZodInstance) => {
   fastify.get('/', {

@@ -3,8 +3,8 @@ import z from 'zod'
 
 import { QuizController } from '@/controllers/QuizController'
 import { quizParamsSchema, updateQuizBodySchema } from '@/controllers/QuizController/schemas'
-import { notFoundSchema } from '@/schemas/NotFound'
-import { quizSchema } from '@/schemas/Quiz'
+import { notFoundSchema } from '@/schemas/notFoundSchema'
+import { quizSchema } from '@/schemas/quizSchema'
 
 const quizRoute = async (fastify: FastifyZodInstance): Promise<void> => {
   fastify.get('/', {
