@@ -4,7 +4,7 @@ import z from 'zod'
 import { QuizController } from '@/controllers/QuizController'
 import {
   createQuizBodySchema,
-  getQuizzesQuerystringSchema,
+  listQuizzesQuerystringSchema,
 } from '@/controllers/QuizController/schemas'
 import { quizSchema } from '@/schemas/quizSchema'
 
@@ -13,7 +13,7 @@ const quizzesRoute = async (fastify: FastifyZodInstance) => {
 
   fastify.get('/', {
     schema: {
-      querystring: getQuizzesQuerystringSchema,
+      querystring: listQuizzesQuerystringSchema,
       response: {
         200: z.array(quizSchema),
       },

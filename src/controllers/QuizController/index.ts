@@ -2,7 +2,7 @@ import { FastifyReply, FastifyRequest, FastifyZodInstance } from 'fastify'
 
 import Quiz from '@/models/Quiz'
 
-import { CreateQuizBody, GetQuizzesQuerystring, QuizParams, UpdateQuizBody } from './schemas'
+import { CreateQuizBody, ListQuizzesQuerystring, QuizParams, UpdateQuizBody } from './schemas'
 
 /**
  * Quiz controller.
@@ -18,7 +18,7 @@ export class QuizController {
    * Get quizzes.
    */
   list = async (
-    req: FastifyRequest<{ Querystring: GetQuizzesQuerystring }>,
+    req: FastifyRequest<{ Querystring: ListQuizzesQuerystring }>,
     reply: FastifyReply,
   ) => {
     const quizRepository = this.fastify.db.getRepository(Quiz)
@@ -88,10 +88,7 @@ export class QuizController {
   /**
    * Delete a quiz.
    */
-  delete = async (
-    req: FastifyRequest<{ Params: QuizParams; Body: UpdateQuizBody }>,
-    reply: FastifyReply,
-  ) => {
+  delete = async (req: FastifyRequest<{ Params: QuizParams }>, reply: FastifyReply) => {
     const quizRepository = this.fastify.db.getRepository(Quiz)
     const quiz = await quizRepository.findOne({
       where: {

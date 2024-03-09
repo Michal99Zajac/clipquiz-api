@@ -38,9 +38,7 @@ const quizRoute = async (fastify: FastifyZodInstance): Promise<void> => {
 
   fastify.delete('/', {
     schema: {
-      params: z.object({
-        quizId: z.string(),
-      }),
+      params: quizParamsSchema,
       response: {
         204: z.null(),
         404: notFoundSchema,
