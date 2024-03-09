@@ -1,5 +1,7 @@
 import { FastifyReply, FastifyRequest, FastifyZodInstance } from 'fastify'
 
+import Answer from '@/models/Answer'
+import Question from '@/models/Question'
 import Quiz from '@/models/Quiz'
 
 import { CreateQuizBody, ListQuizzesQuerystring, QuizParams, UpdateQuizBody } from './schemas'
@@ -35,10 +37,30 @@ export class QuizController {
    */
   create = async (req: FastifyRequest<{ Body: CreateQuizBody }>, reply: FastifyReply) => {
     const quizRepository = this.fastify.db.getRepository(Quiz)
-    const quiz = new Quiz()
-    quiz.title = req.body.title
 
-    await quizRepository.save(quiz)
+    // Fill the quiz with the request body
+    let quiz = new Quiz()
+    quiz.title = req.body.title
+    quiz.description = req.body.description
+    quiz.thumbnail = req.body.thumbnail
+    quiz.videoUrl = req.body.videoUrl
+    quiz.videoDuration = req.body.videoDuration
+    quiz.questions = req.body.questions.map((q) => {
+      const question = new Question()
+      question.content = q.content
+      question.occurrence = q.occurrence
+      question.answers = q.answers.map((a) => {
+        const answer = new Answer()
+        answer.content = a.content
+        answer.isCorrect = a.isCorrect
+        return answer
+      })
+
+      return question
+    })
+
+    // Save the quiz
+    quiz = await quizRepository.save(quiz)
 
     reply.code(201).send(quiz)
   }
@@ -79,6 +101,12 @@ export class QuizController {
 
     // Update the quiz title
     quiz.title = req.body.title
+    quiz.description = req.body.description
+    quiz.thumbnail = req.body.thumbnail
+    quiz.videoUrl = req.body.videoUrl
+    quiz.videoDuration = req.body.videoDuration
+
+    // Save the updated quiz
     await quizRepository.save(quiz)
 
     // Return the updated quiz

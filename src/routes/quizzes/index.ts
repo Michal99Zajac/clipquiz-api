@@ -7,6 +7,7 @@ import {
   listQuizzesQuerystringSchema,
 } from '@/controllers/QuizController/schemas'
 import { quizSchema } from '@/schemas/quizSchema'
+import { quizWithQuestionSchema } from '@/schemas/quizWithQuestionSchema'
 
 const quizzesRoute = async (fastify: FastifyZodInstance) => {
   const controller = new QuizController(fastify)
@@ -25,7 +26,7 @@ const quizzesRoute = async (fastify: FastifyZodInstance) => {
     schema: {
       body: createQuizBodySchema,
       response: {
-        201: quizSchema,
+        201: quizWithQuestionSchema,
       },
     },
     handler: controller.create,
