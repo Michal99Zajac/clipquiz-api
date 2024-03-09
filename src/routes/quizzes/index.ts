@@ -9,6 +9,8 @@ import {
 import { quizSchema } from '@/schemas/quizSchema'
 
 const quizzesRoute = async (fastify: FastifyZodInstance) => {
+  const controller = new QuizController(fastify)
+
   fastify.get('/', {
     schema: {
       querystring: getQuizzesQuerystringSchema,
@@ -16,7 +18,7 @@ const quizzesRoute = async (fastify: FastifyZodInstance) => {
         200: z.array(quizSchema),
       },
     },
-    handler: new QuizController(fastify).list,
+    handler: controller.list,
   })
 
   fastify.post('/', {
@@ -26,7 +28,7 @@ const quizzesRoute = async (fastify: FastifyZodInstance) => {
         201: quizSchema,
       },
     },
-    handler: new QuizController(fastify).create,
+    handler: controller.create,
   })
 }
 

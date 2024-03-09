@@ -8,6 +8,8 @@ import { questionSchema } from '@/schemas/questionSchema'
 import { quizSchema } from '@/schemas/quizSchema'
 
 const quizRoute = async (fastify: FastifyZodInstance): Promise<void> => {
+  const controller = new QuizController(fastify)
+
   fastify.get('/', {
     schema: {
       params: quizParamsSchema,
@@ -19,7 +21,7 @@ const quizRoute = async (fastify: FastifyZodInstance): Promise<void> => {
           .nullable(),
       },
     },
-    handler: new QuizController(fastify).read,
+    handler: controller.read,
   })
 
   fastify.put('/', {
@@ -31,7 +33,7 @@ const quizRoute = async (fastify: FastifyZodInstance): Promise<void> => {
         404: notFoundSchema,
       },
     },
-    handler: new QuizController(fastify).update,
+    handler: controller.update,
   })
 
   fastify.delete('/', {
@@ -44,7 +46,7 @@ const quizRoute = async (fastify: FastifyZodInstance): Promise<void> => {
         404: notFoundSchema,
       },
     },
-    handler: new QuizController(fastify).delete,
+    handler: controller.delete,
   })
 }
 
