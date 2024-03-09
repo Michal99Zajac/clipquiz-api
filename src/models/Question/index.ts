@@ -20,6 +20,8 @@ export class Question {
 
   @OneToMany(() => Answer, (answer) => answer.question, {
     cascade: true,
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
   })
   answers: Answer[]
 
