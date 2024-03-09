@@ -18,9 +18,7 @@ export class QuizController {
    * Get quizzes.
    */
   list = async (
-    req: FastifyRequest<{
-      Querystring: GetQuizzesQuerystring
-    }>,
+    req: FastifyRequest<{ Querystring: GetQuizzesQuerystring }>,
     reply: FastifyReply,
   ) => {
     const quizRepository = this.fastify.db.getRepository(Quiz)
@@ -35,12 +33,7 @@ export class QuizController {
   /**
    * Create a quiz.
    */
-  create = async (
-    req: FastifyRequest<{
-      Body: CreateQuizBody
-    }>,
-    reply: FastifyReply,
-  ) => {
+  create = async (req: FastifyRequest<{ Body: CreateQuizBody }>, reply: FastifyReply) => {
     const quizRepository = this.fastify.db.getRepository(Quiz)
     const quiz = new Quiz()
     quiz.title = req.body.title
@@ -53,12 +46,7 @@ export class QuizController {
   /**
    * Get a quiz.
    */
-  read = async (
-    req: FastifyRequest<{
-      Params: QuizParams
-    }>,
-    reply: FastifyReply,
-  ) => {
+  read = async (req: FastifyRequest<{ Params: QuizParams }>, reply: FastifyReply) => {
     const quizRepository = this.fastify.db.getRepository(Quiz)
     const quiz = await quizRepository.findOne({
       where: {
@@ -74,10 +62,7 @@ export class QuizController {
    * Update a quiz.
    */
   update = async (
-    req: FastifyRequest<{
-      Params: QuizParams
-      Body: UpdateQuizBody
-    }>,
+    req: FastifyRequest<{ Params: QuizParams; Body: UpdateQuizBody }>,
     reply: FastifyReply,
   ) => {
     const quizRepository = this.fastify.db.getRepository(Quiz)
@@ -104,10 +89,7 @@ export class QuizController {
    * Delete a quiz.
    */
   delete = async (
-    req: FastifyRequest<{
-      Params: QuizParams
-      Body: UpdateQuizBody
-    }>,
+    req: FastifyRequest<{ Params: QuizParams; Body: UpdateQuizBody }>,
     reply: FastifyReply,
   ) => {
     const quizRepository = this.fastify.db.getRepository(Quiz)
