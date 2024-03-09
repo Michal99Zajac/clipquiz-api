@@ -19,7 +19,7 @@ const quizRoute = async (fastify: FastifyZodInstance): Promise<void> => {
           .nullable(),
       },
     },
-    handler: new QuizController(fastify).getQuiz,
+    handler: new QuizController(fastify).read,
   })
 
   fastify.put('/', {
@@ -31,7 +31,7 @@ const quizRoute = async (fastify: FastifyZodInstance): Promise<void> => {
         404: notFoundSchema,
       },
     },
-    handler: new QuizController(fastify).updateQuiz,
+    handler: new QuizController(fastify).update,
   })
 
   fastify.delete('/', {
@@ -44,7 +44,7 @@ const quizRoute = async (fastify: FastifyZodInstance): Promise<void> => {
         404: notFoundSchema,
       },
     },
-    handler: new QuizController(fastify).deleteQuiz,
+    handler: new QuizController(fastify).delete,
   })
 }
 

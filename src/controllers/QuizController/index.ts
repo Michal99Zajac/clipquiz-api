@@ -17,7 +17,7 @@ export class QuizController {
   /**
    * Get quizzes.
    */
-  getQuizzes = async (
+  list = async (
     req: FastifyRequest<{
       Querystring: GetQuizzesQuerystring
     }>,
@@ -35,7 +35,7 @@ export class QuizController {
   /**
    * Create a quiz.
    */
-  createQuiz = async (
+  create = async (
     req: FastifyRequest<{
       Body: CreateQuizBody
     }>,
@@ -53,7 +53,7 @@ export class QuizController {
   /**
    * Get a quiz.
    */
-  getQuiz = async (
+  read = async (
     req: FastifyRequest<{
       Params: QuizParams
     }>,
@@ -73,7 +73,7 @@ export class QuizController {
   /**
    * Update a quiz.
    */
-  updateQuiz = async (
+  update = async (
     req: FastifyRequest<{
       Params: QuizParams
       Body: UpdateQuizBody
@@ -103,7 +103,7 @@ export class QuizController {
   /**
    * Delete a quiz.
    */
-  deleteQuiz = async (
+  delete = async (
     req: FastifyRequest<{
       Params: QuizParams
       Body: UpdateQuizBody

@@ -16,7 +16,7 @@ const quizzesRoute = async (fastify: FastifyZodInstance) => {
         200: z.array(quizSchema),
       },
     },
-    handler: new QuizController(fastify).getQuizzes,
+    handler: new QuizController(fastify).list,
   })
 
   fastify.post('/', {
@@ -26,7 +26,7 @@ const quizzesRoute = async (fastify: FastifyZodInstance) => {
         201: quizSchema,
       },
     },
-    handler: new QuizController(fastify).createQuiz,
+    handler: new QuizController(fastify).create,
   })
 }
 
