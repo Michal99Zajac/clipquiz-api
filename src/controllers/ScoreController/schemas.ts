@@ -2,17 +2,21 @@ import { z } from 'zod'
 
 export const scoreBodySchema = z.object({
   answers: z.record(
-    z.number({
-      description: 'A question ID',
-    }),
-    z.number({
-      description: 'An answer ID',
-    }),
+    z
+      .string({
+        description: 'A question ID',
+      })
+      .transform(Number),
+    z
+      .string({
+        description: 'An answer ID',
+      })
+      .transform(Number),
   ),
 })
 
 export const scoreParams = z.object({
-  quizId: z.number(),
+  quizId: z.string().transform(Number),
 })
 
 export const score200Response = z.object({

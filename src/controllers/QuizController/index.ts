@@ -43,7 +43,7 @@ export class QuizController {
     const quizRepository = this.fastify.db.getRepository(Quiz)
 
     // Fill the quiz with the request body
-    let quiz = new Quiz()
+    const quiz = new Quiz()
     quiz.title = req.body.title
     quiz.description = req.body.description
     quiz.thumbnail = req.body.thumbnail
@@ -64,7 +64,7 @@ export class QuizController {
     })
 
     // Save the quiz
-    quiz = await quizRepository.save(quiz)
+    await quizRepository.save(quiz)
 
     reply.code(201).send(quiz)
   }

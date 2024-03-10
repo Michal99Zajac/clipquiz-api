@@ -1,6 +1,7 @@
 import { z } from 'zod'
 
 import { answerSchema } from '@/schemas/answerSchema'
+import { qestionSchema } from '@/schemas/questionSchema'
 import { quizSchema } from '@/schemas/quizSchema'
 
 /* -------------------------------------------------------------------------- */
@@ -8,7 +9,7 @@ import { quizSchema } from '@/schemas/quizSchema'
 /* -------------------------------------------------------------------------- */
 
 export const paramsSchema = z.object({
-  quizId: z.string(),
+  quizId: z.string().transform(Number),
 })
 
 export const notFoundResponseSchema = z.object({
@@ -58,13 +59,7 @@ export const createBodySchema = z.object({
   ),
 })
 
-export const create201ResponseSchema = quizSchema.extend({
-  questions: z.array(
-    quizSchema.extend({
-      answers: z.array(answerSchema),
-    }),
-  ),
-})
+export const create201ResponseSchema = quizSchema
 
 /* -------------------------------------------------------------------------- */
 /*                                    READ                                    */
@@ -74,7 +69,7 @@ export const readParamsSchema = paramsSchema
 
 export const read200ResponseSchema = quizSchema.extend({
   questions: z.array(
-    quizSchema.extend({
+    qestionSchema.extend({
       answers: z.array(answerSchema),
     }),
   ),
