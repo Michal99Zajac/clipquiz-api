@@ -1,20 +1,28 @@
 import { FastifyZodInstance } from 'fastify'
-import z from 'zod'
 
 import { QuizController } from '@/controllers/QuizController'
-import { quizParamsSchema, updateQuizBodySchema } from '@/controllers/QuizController/schemas'
-import { notFoundSchema } from '@/schemas/notFoundSchema'
-import { quizSchema } from '@/schemas/quizSchema'
-import { quizWithQuestionSchema } from '@/schemas/quizWithQuestionSchema'
+import {
+  delete204ResponseSchema,
+  delete404ResponseSchema,
+  deleteParamsSchema,
+  read200ResponseSchema,
+  read404ResponseSchema,
+  readParamsSchema,
+  update200ResponseSchema,
+  update404ResponseSchema,
+  updateBodySchema,
+  updateParamsSchema,
+} from '@/controllers/QuizController/schemas'
 
 const quizRoute = async (fastify: FastifyZodInstance): Promise<void> => {
   const controller = new QuizController(fastify)
 
   fastify.get('/', {
     schema: {
-      params: quizParamsSchema,
+      params: readParamsSchema,
       response: {
-        200: quizWithQuestionSchema.nullable(),
+        200: read200ResponseSchema,
+        404: read404ResponseSchema,
       },
     },
     handler: controller.read,
@@ -22,11 +30,11 @@ const quizRoute = async (fastify: FastifyZodInstance): Promise<void> => {
 
   fastify.put('/', {
     schema: {
-      params: quizParamsSchema,
-      body: updateQuizBodySchema,
+      params: updateParamsSchema,
+      body: updateBodySchema,
       response: {
-        200: quizSchema,
-        404: notFoundSchema,
+        200: update200ResponseSchema,
+        404: update404ResponseSchema,
       },
     },
     handler: controller.update,
@@ -34,10 +42,10 @@ const quizRoute = async (fastify: FastifyZodInstance): Promise<void> => {
 
   fastify.delete('/', {
     schema: {
-      params: quizParamsSchema,
+      params: deleteParamsSchema,
       response: {
-        204: z.null(),
-        404: notFoundSchema,
+        204: delete204ResponseSchema,
+        404: delete404ResponseSchema,
       },
     },
     handler: controller.delete,

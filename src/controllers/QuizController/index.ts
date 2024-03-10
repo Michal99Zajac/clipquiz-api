@@ -4,7 +4,14 @@ import Answer from '@/models/Answer'
 import Question from '@/models/Question'
 import Quiz from '@/models/Quiz'
 
-import { CreateQuizBody, ListQuizzesQuerystring, QuizParams, UpdateQuizBody } from './schemas'
+import {
+  CreateBody,
+  DeleteParams,
+  ListQuerystring,
+  ReadParams,
+  UpdateBody,
+  UpdateParams,
+} from './schemas'
 
 /**
  * Quiz controller.
@@ -19,10 +26,7 @@ export class QuizController {
   /**
    * Get quizzes.
    */
-  list = async (
-    req: FastifyRequest<{ Querystring: ListQuizzesQuerystring }>,
-    reply: FastifyReply,
-  ) => {
+  list = async (req: FastifyRequest<{ Querystring: ListQuerystring }>, reply: FastifyReply) => {
     const quizRepository = this.fastify.db.getRepository(Quiz)
     const quizzes = await quizRepository.find({
       take: req.query.limit,
@@ -35,7 +39,7 @@ export class QuizController {
   /**
    * Create a quiz.
    */
-  create = async (req: FastifyRequest<{ Body: CreateQuizBody }>, reply: FastifyReply) => {
+  create = async (req: FastifyRequest<{ Body: CreateBody }>, reply: FastifyReply) => {
     const quizRepository = this.fastify.db.getRepository(Quiz)
 
     // Fill the quiz with the request body
@@ -68,7 +72,7 @@ export class QuizController {
   /**
    * Get a quiz.
    */
-  read = async (req: FastifyRequest<{ Params: QuizParams }>, reply: FastifyReply) => {
+  read = async (req: FastifyRequest<{ Params: ReadParams }>, reply: FastifyReply) => {
     const quizRepository = this.fastify.db.getRepository(Quiz)
     const quiz = await quizRepository.findOne({
       where: {
@@ -77,6 +81,10 @@ export class QuizController {
       relations: ['questions', 'questions.answers'],
     })
 
+    if (!quiz) {
+      return reply.code(404).send({ message: 'Quiz not found' })
+    }
+
     reply.send(quiz)
   }
 
@@ -84,7 +92,7 @@ export class QuizController {
    * Update a quiz.
    */
   update = async (
-    req: FastifyRequest<{ Params: QuizParams; Body: UpdateQuizBody }>,
+    req: FastifyRequest<{ Params: UpdateParams; Body: UpdateBody }>,
     reply: FastifyReply,
   ) => {
     const quizRepository = this.fastify.db.getRepository(Quiz)
@@ -116,7 +124,7 @@ export class QuizController {
   /**
    * Delete a quiz.
    */
-  delete = async (req: FastifyRequest<{ Params: QuizParams }>, reply: FastifyReply) => {
+  delete = async (req: FastifyRequest<{ Params: DeleteParams }>, reply: FastifyReply) => {
     const quizRepository = this.fastify.db.getRepository(Quiz)
     const quiz = await quizRepository.findOne({
       where: {
