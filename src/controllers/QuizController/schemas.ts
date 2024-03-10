@@ -24,11 +24,12 @@ export const listQuerystringSchema = z.object({
   limit: z
     .string()
     .transform((limit) => Number(limit))
-    .optional(),
+    .default('10'),
   offset: z
     .string()
     .transform((offset) => Number(offset))
-    .optional(),
+    .default('0'),
+  q: z.string().default(''),
 })
 
 export const list200ResponseSchema = z.array(quizSchema)

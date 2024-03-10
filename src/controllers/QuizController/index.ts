@@ -27,11 +27,18 @@ export class QuizController {
    * Get quizzes.
    */
   list = async (req: FastifyRequest<{ Querystring: ListQuerystring }>, reply: FastifyReply) => {
-    const quizRepository = this.fastify.db.getRepository(Quiz)
-    const quizzes = await quizRepository.find({
-      take: req.query.limit,
-      skip: req.query.offset,
-    })
+    const quizQueryBuilder = this.fastify.db.getRepository(Quiz).createQueryBuilder('quiz')
+
+    const quizzes = await quizQueryBuilder
+      .where('LOWER(quiz.title) LIKE LOWER(:searchTerm)', {
+        searchTerm: `%${req.query.q}%`,
+      })
+      .orWhere('LOWER(quiz.description) LIKE LOWER(:searchTerm)', {
+        searchTerm: `%${req.query.q}%`,
+      })
+      .take(req.query.limit)
+      .skip(req.query.offset)
+      .getMany()
 
     reply.send(quizzes)
   }
