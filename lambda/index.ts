@@ -7,3 +7,5 @@ import fastify from '@/index'
 // such as HTTP requests. The awsLambdaFastify function converts Lambda's event format to a Fastify request
 // and translates Fastify's response back to a Lambda-compatible response.
 export const handler = awsLambdaFastify(fastify)
+
+fastify.ready()
