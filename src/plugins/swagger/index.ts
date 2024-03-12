@@ -1,7 +1,6 @@
 import swagger from '@fastify/swagger'
 import swaggerUI from '@fastify/swagger-ui'
 import fp from 'fastify-plugin'
-import { jsonSchemaTransform } from 'fastify-type-provider-zod'
 
 import packageJson from '../../../package.json'
 
@@ -21,7 +20,6 @@ export default fp(async (fastify) => {
       },
       servers: [],
     },
-    transform: jsonSchemaTransform,
   })
 
   await fastify.register(swaggerUI, {

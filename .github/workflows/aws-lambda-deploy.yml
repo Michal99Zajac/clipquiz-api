@@ -26,6 +26,9 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Compile
+        run: npm run compile
+
       - name: Install Production Dependencies
         run: npm ci --production
 

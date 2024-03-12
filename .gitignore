@@ -72,3 +72,6 @@ dist
 
 # test
 .tap
+
+# generated files
+src/generated/*.js

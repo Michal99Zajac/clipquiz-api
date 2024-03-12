@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { zodToJsonSchema } from 'zod-to-json-schema'
 
 import { answerSchema } from '@/schemas/answerSchema'
 import { qestionSchema } from '@/schemas/questionSchema'
@@ -105,6 +106,27 @@ export const deleteParamsSchema = paramsSchema
 export const delete204ResponseSchema = z.null()
 
 export const delete404ResponseSchema = notFoundResponseSchema
+
+/* -------------------------------------------------------------------------- */
+/*                                JSON SCHEMAS                                */
+/* -------------------------------------------------------------------------- */
+
+export const paramsJsonSchema = zodToJsonSchema(paramsSchema)
+export const notFoundResponseJsonSchema = zodToJsonSchema(notFoundResponseSchema)
+export const listQuerystringJsonSchema = zodToJsonSchema(listQuerystringSchema)
+export const list200ResponseJsonSchema = zodToJsonSchema(list200ResponseSchema)
+export const createBodyJsonSchema = zodToJsonSchema(createBodySchema)
+export const create201ResponseJsonSchema = zodToJsonSchema(create201ResponseSchema)
+export const readParamsJsonSchema = zodToJsonSchema(readParamsSchema)
+export const read200ResponseJsonSchema = zodToJsonSchema(read200ResponseSchema)
+export const read404ResponseJsonSchema = zodToJsonSchema(read404ResponseSchema)
+export const updateParamsJsonSchema = zodToJsonSchema(updateParamsSchema)
+export const updateBodyJsonSchema = zodToJsonSchema(updateBodySchema)
+export const update200ResponseJsonSchema = zodToJsonSchema(update200ResponseSchema)
+export const update404ResponseJsonSchema = zodToJsonSchema(update404ResponseSchema)
+export const deleteParamsJsonSchema = zodToJsonSchema(deleteParamsSchema)
+export const delete204ResponseJsonSchema = zodToJsonSchema(delete204ResponseSchema)
+export const delete404ResponseJsonSchema = zodToJsonSchema(delete404ResponseSchema)
 
 /* -------------------------------------------------------------------------- */
 /*                                    TYPES                                   */

@@ -7,6 +7,7 @@
     "outDir": "dist",
     "target": "ES2022",
     "module": "CommonJS",
+    "noStrictGenericChecks": false,
     "strict": true,
     "sourceMap": true,
     "esModuleInterop": true,
@@ -26,6 +27,6 @@
       "@/*": ["src/*"]
     }
   },
-  "include": ["src/**/*.ts", "lambda/*.ts"],
+  "include": ["src/**/*.ts", "lambda/*.ts", "src/compiler.js"],
   "exclude": ["node_modules"]
 }

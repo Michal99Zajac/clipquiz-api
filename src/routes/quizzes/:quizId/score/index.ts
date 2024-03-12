@@ -1,25 +1,25 @@
-import { FastifyZodInstance } from 'fastify'
+import { FastifyPluginAsyncJsonSchemaToTs } from '@fastify/type-provider-json-schema-to-ts'
 
 import { ScoreController } from '@/controllers/ScoreController'
 import {
-  score200Response,
-  score400Response,
-  score404Response,
-  scoreBodySchema,
-  scoreParams,
+  score200ResponseJsonSchema,
+  score400ResponseJsonSchema,
+  score404ResponseJsonSchema,
+  scoreBodyJsonSchema,
+  scoreParamsJsonSchema,
 } from '@/controllers/ScoreController/schemas'
 
-const scoreRoute = async (fastify: FastifyZodInstance): Promise<void> => {
+const scoreRoute: FastifyPluginAsyncJsonSchemaToTs = async (fastify) => {
   const controller = new ScoreController(fastify)
 
   fastify.post('/', {
     schema: {
-      params: scoreParams,
-      body: scoreBodySchema,
+      params: scoreParamsJsonSchema,
+      body: scoreBodyJsonSchema,
       response: {
-        200: score200Response,
-        404: score404Response,
-        400: score400Response,
+        200: score200ResponseJsonSchema,
+        404: score404ResponseJsonSchema,
+        400: score400ResponseJsonSchema,
       },
     },
     handler: controller.score,

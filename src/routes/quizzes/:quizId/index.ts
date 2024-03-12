@@ -1,28 +1,28 @@
-import { FastifyZodInstance } from 'fastify'
+import { FastifyPluginAsyncJsonSchemaToTs } from '@fastify/type-provider-json-schema-to-ts'
 
 import { QuizController } from '@/controllers/QuizController'
 import {
-  delete204ResponseSchema,
-  delete404ResponseSchema,
-  deleteParamsSchema,
-  read200ResponseSchema,
-  read404ResponseSchema,
-  readParamsSchema,
-  update200ResponseSchema,
-  update404ResponseSchema,
-  updateBodySchema,
-  updateParamsSchema,
+  delete204ResponseJsonSchema,
+  delete404ResponseJsonSchema,
+  deleteParamsJsonSchema,
+  read200ResponseJsonSchema,
+  read404ResponseJsonSchema,
+  readParamsJsonSchema,
+  update200ResponseJsonSchema,
+  update404ResponseJsonSchema,
+  updateBodyJsonSchema,
+  updateParamsJsonSchema,
 } from '@/controllers/QuizController/schemas'
 
-const quizRoute = async (fastify: FastifyZodInstance): Promise<void> => {
+const quizRoute: FastifyPluginAsyncJsonSchemaToTs = async (fastify): Promise<void> => {
   const controller = new QuizController(fastify)
 
   fastify.get('/', {
     schema: {
-      params: readParamsSchema,
+      params: readParamsJsonSchema,
       response: {
-        200: read200ResponseSchema,
-        404: read404ResponseSchema,
+        200: read200ResponseJsonSchema,
+        404: read404ResponseJsonSchema,
       },
     },
     handler: controller.read,
@@ -30,11 +30,11 @@ const quizRoute = async (fastify: FastifyZodInstance): Promise<void> => {
 
   fastify.put('/', {
     schema: {
-      params: updateParamsSchema,
-      body: updateBodySchema,
+      params: updateParamsJsonSchema,
+      body: updateBodyJsonSchema,
       response: {
-        200: update200ResponseSchema,
-        404: update404ResponseSchema,
+        200: update200ResponseJsonSchema,
+        404: update404ResponseJsonSchema,
       },
     },
     handler: controller.update,
@@ -42,10 +42,10 @@ const quizRoute = async (fastify: FastifyZodInstance): Promise<void> => {
 
   fastify.delete('/', {
     schema: {
-      params: deleteParamsSchema,
+      params: deleteParamsJsonSchema,
       response: {
-        204: delete204ResponseSchema,
-        404: delete404ResponseSchema,
+        204: delete204ResponseJsonSchema,
+        404: delete404ResponseJsonSchema,
       },
     },
     handler: controller.delete,

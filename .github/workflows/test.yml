@@ -42,6 +42,9 @@ jobs:
       - name: Check Build
         run: npm run build
 
+      - name: Check Compiler
+        run: npm run compiler
+
       - name: Check Types and Lint
         run: npm run check
 
