@@ -11,6 +11,13 @@ jobs:
   deploy:
     runs-on: ubuntu-22.04
     environment: production
+    env:
+      DATABASE_HOST: ${{ vars.DATABASE_HOST }}
+      DATABASE_NAME: ${{ vars.DATABASE_NAME }}
+      DATABASE_PASSWORD: ${{ vars.DATABASE_PASSWORD }}
+      DATABASE_PORT: ${{ vars.DATABASE_PORT }}
+      DATABASE_USERNAME: ${{ vars.DATABASE_USERNAME }}
+      DATABASE_SSL: ${{ vars.DATABASE_SSL }}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
