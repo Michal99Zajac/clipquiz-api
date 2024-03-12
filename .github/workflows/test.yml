@@ -43,7 +43,7 @@ jobs:
         run: npm run build
 
       - name: Check Compiler
-        run: npm run compiler
+        run: npm run compile
 
       - name: Check Types and Lint
         run: npm run check
