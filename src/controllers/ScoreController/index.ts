@@ -1,4 +1,4 @@
-import { FastifyReply, FastifyRequest, FastifyZodInstance } from 'fastify'
+import { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify'
 
 import Quiz from '@/models/Quiz'
 
@@ -8,9 +8,9 @@ import { Score200Response, ScoreBody, ScoreParams } from './schemas'
  * Quiz controller.
  */
 export class ScoreController {
-  fastify: FastifyZodInstance
+  fastify: FastifyInstance
 
-  constructor(fastify: FastifyZodInstance) {
+  constructor(fastify: FastifyInstance) {
     this.fastify = fastify
   }
 

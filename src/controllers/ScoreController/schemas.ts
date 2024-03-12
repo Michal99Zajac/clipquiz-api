@@ -17,7 +17,7 @@ export const scoreBodySchema = z.object({
 })
 
 export const scoreParamsSchema = z.object({
-  quizId: z.string(),
+  quizId: z.string().transform(Number),
 })
 
 export const score200ResponseSchema = z.object({
