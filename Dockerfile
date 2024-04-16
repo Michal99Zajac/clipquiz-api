@@ -26,4 +26,6 @@ ENV NODE_ENV=production
 
 RUN npm ci --only=production --ignore-scripts
 
+EXPOSE 8080
+
 CMD ["npm", "start"]
