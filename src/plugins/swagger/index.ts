@@ -3,8 +3,6 @@ import swaggerUI from '@fastify/swagger-ui'
 import fp from 'fastify-plugin'
 import { jsonSchemaTransform } from 'fastify-type-provider-zod'
 
-import packageJson from '../../../package.json'
-
 /**
  * This plugins adds Swagger support to Fastify
  *
@@ -16,8 +14,8 @@ export default fp(async (fastify) => {
     openapi: {
       info: {
         title: 'ClipQuiz API',
-        description: packageJson.description,
-        version: packageJson.version,
+        description: 'ClipQuiz API Documentation',
+        version: '0.0.0',
       },
       servers: [],
     },
