@@ -1,5 +1,10 @@
+import dotenv from 'dotenv'
 import { bool, cleanEnv, host, port, str } from 'envalid'
 
+// Load environment variables from .env file
+dotenv.config()
+
+// Validate environment variables
 export const env = cleanEnv(process.env, {
   HOST: host({ default: '0.0.0.0' }),
   PORT: port({ default: 8080 }),
