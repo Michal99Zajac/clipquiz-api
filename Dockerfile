@@ -28,4 +28,4 @@ ENV NODE_ENV=production
 
 EXPOSE 8080
 
-CMD ["npx", "typeorm", "migration:run", "-d", "dist/db", "&&", "node", "dist/index.js"]
+CMD ["node", "dist/index.js"]
