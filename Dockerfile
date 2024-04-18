@@ -10,7 +10,7 @@ COPY . .
 
 RUN npm run build
 
-RUN npm ci --ignore-scripts --omit=dev
+RUN npm prune --omit=dev
 
 FROM node:20.10-alpine AS starter
 
@@ -23,6 +23,8 @@ COPY --from=builder /app/package.json ./
 COPY --from=builder /app/package-lock.json ./
 
 COPY --from=builder /app/dist ./dist
+
+RUN npm config set update-notifier false
 
 ENV NODE_ENV=production
 
