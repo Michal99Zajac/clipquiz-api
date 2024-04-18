@@ -2,7 +2,7 @@
   "name": "clipquiz-api",
   "version": "0.0.0",
   "description": "ClipQuiz API",
-  "main": "app.ts",
+  "main": "src/index.ts",
   "private": true,
   "directories": {
     "test": "test"
