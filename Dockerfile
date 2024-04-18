@@ -28,4 +28,4 @@ RUN npm ci --ignore-scripts --omit=dev
 
 EXPOSE 8080
 
-CMD ["node", "-r", "dotenv/config", "src/index.js"]
+CMD ["node", "src/index.js"]
