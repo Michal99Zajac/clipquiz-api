@@ -1,9 +1,13 @@
 name: deploy-workflow
 
 on:
-  push:
+  workflow_run:
+    workflows:
+      - test-workflow
     branches:
       - main
+    types:
+      - completed
 
 jobs:
   deploy:
@@ -23,6 +27,13 @@ jobs:
     runs-on: ubuntu-22.04
     environment: production
     needs: deploy
+    env:
+      DATABASE_HOST: ${{ vars.DATABASE_HOST }}
+      DATABASE_NAME: ${{ vars.DATABASE_NAME }}
+      DATABASE_PASSWORD: ${{ vars.DATABASE_PASSWORD }}
+      DATABASE_PORT: ${{ vars.DATABASE_PORT }}
+      DATABASE_USERNAME: ${{ vars.DATABASE_USERNAME }}
+      DATABASE_SSL: ${{ vars.DATABASE_SSL }}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
