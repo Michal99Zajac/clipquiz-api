@@ -15,7 +15,7 @@ jobs:
 
       - name: DigitalOcean Container Registry Deployment
         run: |
-          docker login -u ${{ secrets.DIGITALOCEAN_USERNAME }} -p ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+          docker login -u ${{ secrets.DIGITALOCEAN_USERNAME }} -p ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }} registry.digitalocean.com
           docker build -t registry.digitalocean.com/clipquiz-register/clipquiz-api:latest .
           docker push registry.digitalocean.com/clipquiz-register/clipquiz-api:latest
 
