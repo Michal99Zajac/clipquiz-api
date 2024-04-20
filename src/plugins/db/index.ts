@@ -7,19 +7,24 @@ import db from '@/db'
  *
  * @see https://github.com/typeorm/typeorm
  */
-export default fp(async (fastify) => {
-  if (!fastify.db) {
-    // Connect to the database
-    await db.initialize()
+export default fp(
+  async (fastify) => {
+    if (!fastify.db) {
+      // Connect to the database
+      await db.initialize()
 
-    // Decorate the fastify instance with the database connection
-    fastify.decorate('db', db)
+      // Decorate the fastify instance with the database connection
+      fastify.decorate('db', db)
 
-    // Gracefully close the database connection
-    fastify.addHook('onClose', (fastify) => {
-      if (fastify.db === db) {
-        fastify.db.destroy()
-      }
-    })
-  }
-})
+      // Gracefully close the database connection
+      fastify.addHook('onClose', (fastify) => {
+        if (fastify.db === db) {
+          fastify.db.destroy()
+        }
+      })
+    }
+  },
+  {
+    name: 'db-plugin',
+  },
+)

@@ -6,6 +6,11 @@ import fp from 'fastify-plugin'
  *
  * @see https://github.com/fastify/fastify-cors
  */
-export default fp(async (fastify) => {
-  await fastify.register(cors)
-})
+export default fp(
+  async (fastify) => {
+    await fastify.register(cors)
+  },
+  {
+    name: 'cors-plugin',
+  },
+)

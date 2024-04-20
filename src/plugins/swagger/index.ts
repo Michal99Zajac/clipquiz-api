@@ -9,20 +9,25 @@ import { jsonSchemaTransform } from 'fastify-type-provider-zod'
  * @see https://github.com/fastify/fastify-swagger
  * @see https://github.com/fastify/fastify-swagger-ui
  */
-export default fp(async (fastify) => {
-  await fastify.register(swagger, {
-    openapi: {
-      info: {
-        title: 'ClipQuiz API',
-        description: 'ClipQuiz API Documentation',
-        version: '0.0.0',
+export default fp(
+  async (fastify) => {
+    await fastify.register(swagger, {
+      openapi: {
+        info: {
+          title: 'ClipQuiz API',
+          description: 'ClipQuiz API Documentation',
+          version: '0.0.0',
+        },
+        servers: [],
       },
-      servers: [],
-    },
-    transform: jsonSchemaTransform,
-  })
+      transform: jsonSchemaTransform,
+    })
 
-  await fastify.register(swaggerUI, {
-    routePrefix: '/docs',
-  })
-})
+    await fastify.register(swaggerUI, {
+      routePrefix: '/docs',
+    })
+  },
+  {
+    name: 'swagger-plugin',
+  },
+)

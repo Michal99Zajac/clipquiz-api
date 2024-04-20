@@ -6,8 +6,13 @@ import { serializerCompiler, validatorCompiler, ZodTypeProvider } from 'fastify-
  *
  * @see https://github.com/turkerdev/fastify-type-provider-zod
  */
-export default fp(async (fastify) => {
-  fastify.setValidatorCompiler(validatorCompiler)
-  fastify.setSerializerCompiler(serializerCompiler)
-  fastify.withTypeProvider<ZodTypeProvider>()
-})
+export default fp(
+  async (fastify) => {
+    fastify.setValidatorCompiler(validatorCompiler)
+    fastify.setSerializerCompiler(serializerCompiler)
+    fastify.withTypeProvider<ZodTypeProvider>()
+  },
+  {
+    name: 'zod-plugin',
+  },
+)
