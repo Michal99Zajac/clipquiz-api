@@ -1,6 +1,8 @@
 import cors from '@fastify/cors'
 import fp from 'fastify-plugin'
 
+import env from '@/config/env'
+
 /**
  * This plugins adds some utilities to handle CORS
  *
@@ -8,7 +10,9 @@ import fp from 'fastify-plugin'
  */
 export default fp(
   async (fastify) => {
-    await fastify.register(cors)
+    await fastify.register(cors, {
+      origin: env.WEB_APP_URL,
+    })
   },
   {
     name: 'cors-plugin',
