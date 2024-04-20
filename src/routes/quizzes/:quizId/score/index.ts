@@ -1,4 +1,4 @@
-import { FastifyZodInstance } from 'fastify'
+import { FastifyInstance } from 'fastify'
 
 import { ScoreController } from '@/controllers/ScoreController'
 import {
@@ -9,7 +9,7 @@ import {
   scoreParams,
 } from '@/controllers/ScoreController/schemas'
 
-const scoreRoute = async (fastify: FastifyZodInstance): Promise<void> => {
+const scoreRoute = async (fastify: FastifyInstance): Promise<void> => {
   const controller = new ScoreController(fastify)
 
   fastify.post('/', {

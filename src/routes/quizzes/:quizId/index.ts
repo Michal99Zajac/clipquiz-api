@@ -1,4 +1,4 @@
-import { FastifyZodInstance } from 'fastify'
+import { FastifyInstance } from 'fastify'
 
 import { QuizController } from '@/controllers/QuizController'
 import {
@@ -14,7 +14,7 @@ import {
   updateParamsSchema,
 } from '@/controllers/QuizController/schemas'
 
-const quizRoute = async (fastify: FastifyZodInstance): Promise<void> => {
+const quizRoute = async (fastify: FastifyInstance): Promise<void> => {
   const controller = new QuizController(fastify)
 
   fastify.get('/', {

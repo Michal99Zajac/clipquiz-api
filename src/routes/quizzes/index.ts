@@ -1,4 +1,4 @@
-import { FastifyZodInstance } from 'fastify'
+import { FastifyInstance } from 'fastify'
 
 import { QuizController } from '@/controllers/QuizController'
 import {
@@ -8,7 +8,7 @@ import {
   listQuerystringSchema,
 } from '@/controllers/QuizController/schemas'
 
-const quizzesRoute = async (fastify: FastifyZodInstance) => {
+const quizzesRoute = async (fastify: FastifyInstance) => {
   const controller = new QuizController(fastify)
 
   fastify.get('/', {

@@ -1,4 +1,4 @@
-import { FastifyReply, FastifyRequest, FastifyZodInstance } from 'fastify'
+import { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify'
 
 import Answer from '@/models/Answer'
 import Question from '@/models/Question'
@@ -17,9 +17,9 @@ import {
  * Quiz controller.
  */
 export class QuizController {
-  fastify: FastifyZodInstance
+  fastify: FastifyInstance
 
-  constructor(fastify: FastifyZodInstance) {
+  constructor(fastify: FastifyInstance) {
     this.fastify = fastify
   }
 
