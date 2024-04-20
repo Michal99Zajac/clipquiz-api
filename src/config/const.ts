@@ -5,3 +5,4 @@ export const SESSION_TTL = 60 * 60 * 24 * 7 // 1 week
 
 // Google OAuth2
 export const GOOGLE_OAUTH2_CALLBACK_URL = '/auth/google/callback'
+export const GOOGLE_OAUTH2_SCOPE = ['profile', 'email', 'openid']
