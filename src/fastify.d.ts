@@ -1,3 +1,4 @@
+import type { Authenticator } from '@fastify/passport'
 import type { DataSource } from 'typeorm'
 import type { ZodTypeProvider } from 'fastify-type-provider-zod'
 
@@ -5,13 +6,14 @@ declare module 'fastify' {
   export interface FastifyInstance {
     someSupport(): string
     db: DataSource
+    passport: Authenticator
   }
 
-  export type FastifyZodInstance = FastifyInstance<
-    RawServerDefault,
-    RawRequestDefaultExpression<RawServerDefault>,
-    RawReplyDefaultExpression<RawServerDefault>,
-    FastifyBaseLogger,
-    ZodTypeProvider
-  >
+  interface PassportUser {
+    message: string
+  }
+}
+
+declare module '@fastify/secure-session' {
+  interface SessionData {}
 }
