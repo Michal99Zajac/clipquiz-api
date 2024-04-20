@@ -1,5 +1,5 @@
 import passport from '@fastify/passport'
-import { preValidationHookHandler } from 'fastify/types/hooks'
+import { FastifyReply, FastifyRequest } from 'fastify'
 import fp from 'fastify-plugin'
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20'
 
@@ -44,16 +44,17 @@ export default fp(
       return data
     })
 
-    // implement the authenticate method
-    const authenticate: preValidationHookHandler = async (req, reply, done) => {
+    // Authenticate the user method
+    const authenticate = async (req: FastifyRequest, reply: FastifyReply) => {
       // check if the user is authenticated
+      // if not, return an error
       if (!req.user) {
         reply.status(401)
-        done(new Error('Unauthorized'))
+        throw new Error('Unauthorized')
       }
 
-      // user is authenticated
-      done()
+      // if the user is authenticated, return the user
+      return req.user
     }
 
     // decorate the fastify instance with the authenticate method

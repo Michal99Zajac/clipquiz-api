@@ -8,7 +8,9 @@ const authUserRoute = async (fastify: FastifyInstance) => {
     },
     preValidation: fastify.authenticate,
     handler: async (req, reply) => {
-      reply.send(req.user)
+      const user = fastify.authenticate(req, reply)
+
+      reply.send(user)
     },
   })
 }
