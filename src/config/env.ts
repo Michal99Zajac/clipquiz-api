@@ -16,6 +16,13 @@ export const env = cleanEnv(process.env, {
   DATABASE_PASSWORD: str(),
   DATABASE_NAME: str(),
   DATABASE_SSL: bool(),
+  // REDIS
+  REDIS_HOST: host(),
+  REDIS_PORT: port(),
+  REDIS_PASSWORD: str(),
+  REDIS_USERNAME: str(),
+  // SESSION
+  SESSION_SECRET: str(),
 })
 
 export default env
