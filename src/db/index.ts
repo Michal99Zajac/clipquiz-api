@@ -4,6 +4,7 @@ import env from '@/config/env'
 import Answer from '@/models/Answer'
 import Question from '@/models/Question'
 import Quiz from '@/models/Quiz'
+import User from '@/models/User'
 
 /**
  * Database data source
@@ -16,7 +17,7 @@ export default new DataSource({
   password: env.DATABASE_PASSWORD,
   database: env.DATABASE_NAME,
   ssl: env.DATABASE_SSL,
-  entities: [Quiz, Answer, Question],
+  entities: [Quiz, Answer, Question, User],
   migrationsRun: false,
   synchronize: false,
   logging: false,

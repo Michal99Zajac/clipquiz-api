@@ -23,7 +23,7 @@
     "build": "tsc && tsc-alias",
     "dev": "nodemon src/index.ts",
     "test": "jest",
-    "migration:make": "typeorm-ts-node-commonjs migration:generate -d src/db",
+    "migration:make": "typeorm-ts-node-commonjs migration:create",
     "migration:migrate": "typeorm-ts-node-commonjs migration:run -d src/db",
     "migration:revert": "typeorm-ts-node-commonjs migration:revert -d src/db",
     "migration:show": "typeorm-ts-node-commonjs migration:show -d src/db",
