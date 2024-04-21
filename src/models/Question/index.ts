@@ -3,7 +3,9 @@ import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'ty
 import { Answer } from '@/models/Answer'
 import Quiz from '@/models/Quiz'
 
-@Entity()
+@Entity({
+  name: 'questions',
+})
 export class Question {
   @PrimaryGeneratedColumn()
   id: number
