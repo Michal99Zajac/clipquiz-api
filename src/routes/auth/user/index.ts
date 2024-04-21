@@ -6,7 +6,6 @@ const authUserRoute = async (fastify: FastifyInstance) => {
       description: 'Get authenticated user',
       tags: ['auth'],
     },
-    preValidation: fastify.authenticate,
     handler: async (req, reply) => {
       const user = fastify.authenticate(req, reply)
 

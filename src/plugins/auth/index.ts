@@ -45,7 +45,7 @@ export default fp(
     })
 
     // Authenticate the user method
-    const authenticate = async (req: FastifyRequest, reply: FastifyReply) => {
+    const authenticate = (req: FastifyRequest, reply: FastifyReply) => {
       // check if the user is authenticated
       // if not, return an error
       if (!req.user) {
