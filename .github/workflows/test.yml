@@ -4,23 +4,25 @@ on: [push]
 
 env:
   NODE_ENV: test
-  DATABASE_HOST: localhost
-  DATABASE_PORT: 5432
-  DATABASE_USERNAME: postgres
-  DATABASE_PASSWORD: postgres
-  DATABASE_NAME: postgres
-  DATABASE_SSL: false
+  DATABASE_URL: postgres://postgres:postgres@localhost:5432/postgres?schema=public
 
 jobs:
   test:
+    environment: test
+    env:
+      CLIENT_URL: ${{ vars.CLIENT_URL }}
+      GOOGLE_OAUTH2_CLIENT_ID: ${{ vars.GOOGLE_OAUTH2_CLIENT_ID }}
+      GOOGLE_OAUTH2_SECRET: ${{ vars.GOOGLE_OAUTH2_SECRET }}
+      SESSION_SALT: ${{ vars.SESSION_SALT }}
+      SESSION_SECRET: ${{ vars.SESSION_SECRET }}
     runs-on: ubuntu-22.04
     services:
       postgres:
         image: postgres:15
         env:
-          POSTGRES_USER: ${{ env.DATABASE_USERNAME}}
-          POSTGRES_PASSWORD: ${{ env.DATABASE_PASSWORD}}
-          POSTGRES_DB: ${{ env.DATABASE_NAME}}
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: postgres
         ports:
           - 5432:5432
         options: >-
@@ -46,7 +48,7 @@ jobs:
         run: npm run check
 
       - name: Migrate Database
-        run: npm run migration:migrate
+        run: npm run db:deploy
 
       - name: Run Tests
         run: npm test

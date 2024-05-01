@@ -41,13 +41,13 @@ export const list200ResponseSchema = z.array(quizSchema)
 export const createBodySchema = z.object({
   title: z.string().max(255),
   description: z.string().max(1024),
-  thumbnail: z.string().url(),
+  thumbnailUrl: z.string().url(),
   videoUrl: z.string().url(),
-  videoDuration: z.number().int().positive(),
+  duration: z.number().int().positive(),
   questions: z.array(
     z.object({
       content: z.string().max(2048),
-      occurrence: z.number().int().positive(),
+      timestamp: z.number().int().positive(),
       answers: z
         .array(
           z.object({
@@ -87,9 +87,9 @@ export const updateParamsSchema = paramsSchema
 export const updateBodySchema = z.object({
   title: z.string().max(255),
   description: z.string().max(1024),
-  thumbnail: z.string().url(),
+  thumbnailUrl: z.string().url(),
   videoUrl: z.string().url(),
-  videoDuration: z.number().int().positive(),
+  duration: z.number().int().positive(),
 })
 
 export const update200ResponseSchema = quizSchema

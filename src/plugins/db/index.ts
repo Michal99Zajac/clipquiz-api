@@ -1,17 +1,19 @@
+import { PrismaClient } from '@prisma/client'
 import fp from 'fastify-plugin'
 
-import db from '@/db'
-
 /**
- * This plugins adds some utilities to handle database ORM (TypeORM)
+ * This plugin is used to connect to the database using Prisma.
  *
- * @see https://github.com/typeorm/typeorm
+ * @see https://github.com/prisma/prisma
  */
 export default fp(
   async (fastify) => {
     if (!fastify.db) {
+      // Create a new Prisma client
+      const db = new PrismaClient()
+
       // Connect to the database
-      await db.initialize()
+      await db.$connect()
 
       // Decorate the fastify instance with the database connection
       fastify.decorate('db', db)
@@ -19,7 +21,7 @@ export default fp(
       // Gracefully close the database connection
       fastify.addHook('onClose', (fastify) => {
         if (fastify.db === db) {
-          fastify.db.destroy()
+          fastify.db.$disconnect()
         }
       })
     }

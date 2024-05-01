@@ -1,5 +1,3 @@
-import 'reflect-metadata'
-
 import AutoLoad, { AutoloadPluginOptions } from '@fastify/autoload'
 import { FastifyPluginAsync, FastifyServerOptions } from 'fastify'
 import { join } from 'path'

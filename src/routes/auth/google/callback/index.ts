@@ -13,7 +13,7 @@ const googleCallbackRoute = async (fastify: FastifyInstance) => {
       scope: GOOGLE_OAUTH2_SCOPE,
     }),
     handler: (_, reply) => {
-      reply.redirect(env.WEB_APP_URL)
+      reply.redirect(env.CLIENT_URL)
     },
   })
 }

@@ -24,15 +24,15 @@ export const score200Response = z.object({
   quiz: z.object({
     id: z.number(),
     videoUrl: z.string().url(),
-    videoDuration: z.number().int().positive(),
-    thumbnail: z.string().url(),
+    duration: z.number().int().positive(),
+    thumbnailUrl: z.string().url(),
     title: z.string(),
     description: z.string(),
     questions: z.array(
       z.object({
         id: z.number(),
         content: z.string(),
-        occurrence: z.number().int().positive(),
+        timestamp: z.number().int().positive(),
         isCorrect: z.boolean(),
         answers: z.array(
           z.object({

@@ -1,7 +1,5 @@
 import { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify'
 
-import Quiz from '@/models/Quiz'
-
 import { Score200Response, ScoreBody, ScoreParams } from './schemas'
 
 /**
@@ -21,10 +19,17 @@ export class ScoreController {
     req: FastifyRequest<{ Params: ScoreParams; Body: ScoreBody }>,
     reply: FastifyReply,
   ) => {
-    const quizRepository = this.fastify.db.getRepository(Quiz)
-    const quiz = await quizRepository.findOne({
-      where: { id: req.params.quizId },
-      relations: ['questions', 'questions.answers'],
+    const quiz = await this.fastify.db.quiz.findFirst({
+      where: {
+        id: req.params.quizId,
+      },
+      include: {
+        questions: {
+          include: {
+            answers: true,
+          },
+        },
+      },
     })
 
     // Check if quiz exists
@@ -38,8 +43,8 @@ export class ScoreController {
       quiz: {
         id: quiz.id,
         videoUrl: quiz.videoUrl,
-        videoDuration: quiz.videoDuration,
-        thumbnail: quiz.thumbnail,
+        duration: quiz.duration,
+        thumbnailUrl: quiz.thumbnailUrl,
         title: quiz.title,
         description: quiz.description,
         questions: [],
@@ -68,7 +73,7 @@ export class ScoreController {
       response.quiz.questions.push({
         id: question.id,
         content: question.content,
-        occurrence: question.occurrence,
+        timestamp: question.timestamp,
         isCorrect: answer.isCorrect,
         answers: question.answers.map((a) => ({
           id: a.id,

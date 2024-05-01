@@ -28,12 +28,7 @@ jobs:
     environment: production
     needs: deploy
     env:
-      DATABASE_HOST: ${{ vars.DATABASE_HOST }}
-      DATABASE_NAME: ${{ vars.DATABASE_NAME }}
-      DATABASE_PASSWORD: ${{ vars.DATABASE_PASSWORD }}
-      DATABASE_PORT: ${{ vars.DATABASE_PORT }}
-      DATABASE_USERNAME: ${{ vars.DATABASE_USERNAME }}
-      DATABASE_SSL: ${{ vars.DATABASE_SSL }}
+      DATABASE_URL: ${{ vars.DATABASE_URL }}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -43,8 +38,5 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install Dependencies
-        run: npm ci
-
       - name: Migrate Database
-        run: npm run migration:migrate
+        run: npx prisma migrate deploy

@@ -17,8 +17,6 @@
     "noFallthroughCasesInSwitch": true,
     "isolatedModules": true,
     "forceConsistentCasingInFileNames": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
     "strictPropertyInitialization": false,
     "skipLibCheck": true,
     "baseUrl": ".",

@@ -1,5 +1,5 @@
 import dotenv from 'dotenv'
-import { bool, cleanEnv, host, port, str, url } from 'envalid'
+import { cleanEnv, host, port, str, url } from 'envalid'
 
 // Load environment variables from .env file
 dotenv.config()
@@ -10,14 +10,9 @@ export const env = cleanEnv(process.env, {
   PORT: port({ default: 8080 }),
   NODE_ENV: str({ choices: ['development', 'production', 'test'], default: 'development' }),
   // WEB
-  WEB_APP_URL: url(),
+  CLIENT_URL: url(),
   // DATABASE
-  DATABASE_HOST: host(),
-  DATABASE_PORT: port({ default: 5432 }),
-  DATABASE_USERNAME: str(),
-  DATABASE_PASSWORD: str(),
-  DATABASE_NAME: str(),
-  DATABASE_SSL: bool(),
+  DATABASE_URL: str(),
   // SESSION
   SESSION_SECRET: str(),
   SESSION_SALT: str(),
