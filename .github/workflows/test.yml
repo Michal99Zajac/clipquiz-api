@@ -48,7 +48,7 @@ jobs:
         run: npm run check
 
       - name: Migrate Database
-        run: npm run db:deploy
+        run: npm run db:migrate
 
       - name: Run Tests
         run: npm test
